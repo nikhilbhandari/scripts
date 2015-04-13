@@ -1,0 +1,49 @@
+<?xml version="1.0" standalone="yes"?>
+<!--
+    Copyright 2006-2015 XXX Software Inc. All rights reserved.
+-->
+<project basedir="." default="deploy-copy" name="rest-api" xmlns:artifact="antlib:org.apache.maven.artifact.ant" xmlns:sonar="antlib:org.sonar.ant">
+	<property name="module" value="api"/>
+	<property name="tier" value="api"/>
+
+<-- ......
+    ......
+    ......
+-->
+
+	<!-- Define the SonarQube global properties -->
+	<property name="sonar.host.url" value="https://localhost.com/sonarqube" />
+	<!--	
+	<property name="sonar.jdbc.url" value="jdbc:mysql://localhost:3306/sonar" />
+	<property name="sonar.jdbc.username" value="sonar" />
+	<property name="sonar.jdbc.password" value="sonar" />
+	-->
+	
+	<!-- Define the SonarQube project properties -->
+	<property name="sonar.projectKey" value="com.project.sca.apis" />
+	<property name="sonar.projectName" value="apis_sca" />
+	<property name="sonar.projectVersion" value="1.0" />
+	<property name="sonar.scm.enabled" value="false" />
+	<!-- <property name="sonar.scm-stats.enabled" value="false" /> -->
+	<property name="sonar.issuesReport.html.enable" value="true" />
+	<property name="sonar.issuesReport.console.enable" value="true" />
+	<property name="sonar.analysis.mode" value="incremental" />
+	<property name="sonar.sources" value="src" />
+	<property name="sonar.language" value="java" />	
+	<property name="sonar.tests" value="src-test" />
+	<property name="sonar.sourceEncoding" value="UTF-8" />
+	<property name="sonar.projectBaseDir" value="." />
+	<!-- <property name="sonar.scm.url" value="scm:svn:https://repo.project.com/myproject/project/trunk/modules/apis" />	-->
+	<!-- <property name="sonar.verbose" value="true" /> -->
+	
+	<!-- Define the SonarQube target. -->
+	<target name="sonar" depends="clean">
+		<delete dir=".sonar"/>
+		<taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">			
+			<classpath path="../../lib-thirdparty/sonar/sonar-ant-task-2.2.jar" />
+		</taskdef>	 
+		<!-- Execute the SonarQube analysis -->
+		<sonar:sonar />
+	</target>	
+
+</project>
